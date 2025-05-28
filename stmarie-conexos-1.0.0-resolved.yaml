@@ -1,0 +1,159 @@
+openapi: 3.0.0
+info:
+  title: API para Gerenciamento de Produtos
+  description: API para cadastro, edição e inativação de produtos.
+  version: 1.0.0
+servers:
+  - url: https://9ja0ihvc4f.execute-api.us-east-1.amazonaws.com
+paths:
+  /conexos:
+    post:
+      summary: Realiza operações de cadastro, edição ou inativação de produtos.
+      operationId: manage_product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/product_request_body'
+        required: true
+      responses:
+        "200":
+          description: Operação realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "403":
+          description: Chave de autenticação inválida.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Erro na requisição.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+components:
+  schemas:
+    product_request_body:
+      type: object
+      properties:
+        authKey:
+          type: string
+        operacao:
+          type: string
+          enum: [novo, edicao, inativacao]
+        produto:
+          type: integer
+        codAlteracao:
+          type: integer
+        tipo:
+          type: string
+        situacao:
+          type: string
+        NCM:
+          type: string
+        listaUnidadesNegocio:
+          type: array
+          items:
+            type: object
+            properties:
+              UnidadeNegocio:
+                type: integer
+              Descricao:
+                type: string
+        listaAlteracoes:
+          type: object
+          properties:
+            camposAlterados:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  valorAnterior:
+                    type: string
+                  novoValor:
+                    type: string
+            listasAlteradas:
+              type: object
+              properties:
+                codificacao:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      acao:
+                        type: string
+                      valores:
+                        type: array
+                        items:
+                          type: string
+                fabricantes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      acao:
+                        type: string
+                      valores:
+                        type: array
+                        items:
+                          type: string
+                destaquesImportacao:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      acao:
+                        type: string
+                      valores:
+                        type: array
+                        items:
+                          type: string
+                destaquesExportacao:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      acao:
+                        type: string
+                      valores:
+                        type: array
+                        items:
+                          type: string
+                restricaoBeneficiosFiscais:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      acao:
+                        type: string
+                      valores:
+                        type: array
+                        items:
+                          type: string
+                codServicoFilial:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      acao:
+                        type: string
+                      valores:
+                        type: array
+                        items:
+                          type: string
+    inline_response_200:
+      type: object
+      properties:
+        message:
+          type: string
+    inline_response_400:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string
