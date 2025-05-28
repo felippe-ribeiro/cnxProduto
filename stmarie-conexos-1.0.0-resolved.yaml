@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: API para Gerenciamento de Produtos
+  title: API para Gerenciamento de Produtos Conexos
   description: API para cadastro, edição e inativação de produtos.
   version: 1.0.0
 servers:
