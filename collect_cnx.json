@@ -1,0 +1,67 @@
+{
+  "info": {
+    "name": "API_PRODUTOS_CONEXOS",
+    "_postman_id": "12345678-90ab-cdef-1234-567890abcdef",
+    "description": "Testes organizados por tipo de operação: novo, edicao, inativacao.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Cadastro de Produto (operacao: novo)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"authKey\": \"iE@$DFA4\",\n  \"operacao\": \"novo\",\n  \"produto\": 101,\n  \"codAlteracao\": 1,\n  \"tipo\": \"Acabado\",\n  \"situacao\": \"Ativo\",\n  \"NCM\": \"1234.56.78\",\n  \"listaUnidadesNegocio\": [\n    { \"UnidadeNegocio\": 1, \"Descricao\": \"Unidade Central\" }\n  ]\n}"
+        },
+        "url": {
+          "raw": "https://9ja0ihvc4f.execute-api.us-east-1.amazonaws.com/conexos",
+          "protocol": "https",
+          "host": ["9ja0ihvc4f", "execute-api", "us-east-1", "amazonaws", "com"],
+          "path": ["conexos"]
+        }
+      }
+    },
+    {
+      "name": "Edição de Produto (operacao: edicao)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"authKey\": \"iE@$DFA4\",\n  \"operacao\": \"edicao\",\n  \"produto\": 101,\n  \"codAlteracao\": 2,\n  \"tipo\": \"Acabado\",\n  \"situacao\": \"Ativo\",\n  \"NCM\": \"1234.56.78\",\n  \"listaUnidadesNegocio\": [\n    { \"UnidadeNegocio\": 1, \"Descricao\": \"Unidade Central\" }\n  ],\n  \"listaAlteracoes\": {\n    \"camposAlterados\": {\n      \"tipo\": { \"valorAnterior\": \"Semiacabado\", \"novoValor\": \"Acabado\" }\n    },\n    \"listasAlteradas\": {\n      \"codificacao\": [\n        {\n          \"acao\": \"ALTERAR\",\n          \"valores\": [\"valor1\", \"valor2\"]\n        }\n      ]\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "https://9ja0ihvc4f.execute-api.us-east-1.amazonaws.com/conexos",
+          "protocol": "https",
+          "host": ["9ja0ihvc4f", "execute-api", "us-east-1", "amazonaws", "com"],
+          "path": ["conexos"]
+        }
+      }
+    },
+    {
+      "name": "Inativação de Produto (operacao: inativacao)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"authKey\": \"iE@$DFA4\",\n  \"operacao\": \"inativacao\",\n  \"produto\": 101,\n  \"codAlteracao\": 3,\n  \"tipo\": \"Acabado\",\n  \"situacao\": \"Inativo\"\n}"
+        },
+        "url": {
+          "raw": "https://9ja0ihvc4f.execute-api.us-east-1.amazonaws.com/conexos",
+          "protocol": "https",
+          "host": ["9ja0ihvc4f", "execute-api", "us-east-1", "amazonaws", "com"],
+          "path": ["conexos"]
+        }
+      }
+    }
+  ]
+}
